@@ -3,13 +3,23 @@
 using namespace std;
 
 void adjust(vector<int> &arr, int i, int len){
-    int tmp = arr[i];
     for (int k = 2*i+1; k < len; k = 2*k+1){
         if(k+1 < len && arr[k+1] > arr[k]){
             k++;
         }
         if(arr[k] > arr[i]){
             swap(arr[i],arr[k]);
+            i = k;
+        }
+    }
+}
+
+void heapsort(vector<int> &arr, int i, int len){
+    int tmp = arr[i];
+    for (int k = 2*i+1; k < len; k = 2*k+1){
+        if (k+1 < len && arr[k+1] > arr[k]) k++;
+        if(arr[k]>arr[i]){
+            swap(arr[k],arr[i]);
             i = k;
         }
     }
